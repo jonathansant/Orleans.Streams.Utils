@@ -3,14 +3,8 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.Extensions.Logging.Abstractions, Version=2.1.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60">
-      <HintPath>..\..\..\..\.nuget\packages\microsoft.extensions.logging.abstractions\2.1.1\lib\netstandard2.0\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
-    </Reference>
-    <Reference Include="Orleans.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\..\..\..\.nuget\packages\microsoft.orleans.core\2.0.0\lib\netstandard2.0\Orleans.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Orleans.Core.Abstractions, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\..\..\..\.nuget\packages\microsoft.orleans.core.abstractions\2.0.0\lib\netstandard2.0\Orleans.Core.Abstractions.dll</HintPath>
-    </Reference>
+    <PackageReference Include="Confluent.Kafka" Version="1.0.0-experimental-12" />
+    <PackageReference Include="Microsoft.Orleans.Core" Version="2.0.3" />
+    <PackageReference Include="Microsoft.Orleans.Core.Abstractions" Version="2.0.0" />
   </ItemGroup>
 </Project>
