@@ -24,7 +24,7 @@ jobs:
             echo "restore packages"
             dotnet restore $SOLUTIONN /p:Configuration=Release
 
-            exho "dotnet publish"
+            echo "dotnet publish"
             dotnet publish $SOLUTION -c Release
       - run:
           name: test

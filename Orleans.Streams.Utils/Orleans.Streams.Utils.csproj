@@ -1,6 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <Description>Streaming utilities for Microsoft Orleans.</Description>
+    <PackageTags>orleans utilities streams providers streamprovider</PackageTags>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Confluent.Kafka" Version="1.0.0-experimental-12" />
