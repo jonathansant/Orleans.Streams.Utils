@@ -21,10 +21,10 @@ jobs:
           command: |
             SOLUTION=$(node -p "require('./package.json').solution")
 
-            print_title "restore packages"
+            echo "restore packages"
             dotnet restore $SOLUTIONN /p:Configuration=Release
 
-            print_title "dotnet publish"
+            exho "dotnet publish"
             dotnet publish $SOLUTION -c Release
       - run:
           name: test
@@ -43,6 +43,6 @@ jobs:
             dotnet pack $SOLUTION /p:PackageVersion=$PACKAGE_VERSION -o ../../ -c release
             dotnet nuget push *.nupkg -k $nuget_api_key -s "nuget.org"
 
-            print_title "git tag"
+            echo "git tag"
             git tag $PACKAGE_VERSION
             git push --tags
