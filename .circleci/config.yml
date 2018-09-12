@@ -41,7 +41,7 @@ jobs:
             PACKAGE_VERSION=$(node -p "require('./package.json').version")
 
             dotnet pack $SOLUTION /p:PackageVersion=$PACKAGE_VERSION -o ../../ -c release
-            dotnet nuget push *.nupkg -k $nuget_api_key -s "nuget.org"
+            dotnet nuget push ../../*.nupkg -k $nuget_api_key -s "nuget.org"
 
             echo "git tag"
             git tag $PACKAGE_VERSION
