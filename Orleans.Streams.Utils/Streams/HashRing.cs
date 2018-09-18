@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Orleans.Streams.Utils
+namespace Orleans.Streams.Utils.Streams
 {
 	internal interface IRingIdentifier<T> : IEquatable<T>
 	{

@@ -1,4 +1,4 @@
-﻿namespace Orleans.Streams.Utils
+﻿namespace Orleans.Streams.Utils.Streams
 {
 	public class QueueProperties
 	{
@@ -7,12 +7,12 @@
 		public uint PartitionId { get; }
 		public uint Hash { get; }
 
-		public QueueProperties(string @namespace, uint? partitionId = null)
+		public QueueProperties(string @namespace, uint partitionId = 0)
 		{
 			Namespace = @namespace;
-			PartitionId = partitionId ?? 0;
+			PartitionId = partitionId;
 			QueueName = $"{@namespace}_{partitionId}";
-			Hash = partitionId != null ? PartitionId : JenkinsHash.ComputeHash(@namespace);
+			Hash = JenkinsHash.ComputeHash(@namespace);
 		}
 	}
 }

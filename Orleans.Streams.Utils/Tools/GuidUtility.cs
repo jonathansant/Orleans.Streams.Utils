@@ -2,7 +2,7 @@
 using System.Security.Cryptography;
 using System.Text;
 
-namespace Orleans.Streams.Utils
+namespace Orleans.Streams.Utils.Tools
 {
 	/// <summary>
 	/// Helper methods for working with <see cref="Guid"/>.
