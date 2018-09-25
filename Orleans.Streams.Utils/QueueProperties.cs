@@ -1,4 +1,4 @@
-﻿namespace Orleans.Streams.Utils.Streams
+﻿namespace Orleans.Streams.Utils
 {
 	public class QueueProperties
 	{

@@ -4,8 +4,9 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using Orleans.Concurrency;
 using Orleans.Runtime;
+using Orleans.Streams.Utils.Tools;
 
-namespace Orleans.Streams.Utils.Streams
+namespace Orleans.Streams.Utils
 {
 	public class ExternalQueueMapper : IConsistentRingStreamQueueMapper
 	{

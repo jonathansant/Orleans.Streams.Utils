@@ -1,7 +1,5 @@
 ﻿
-
-// ReSharper disable once CheckNamespace
-namespace Orleans.Streams.Utils.Streams
+namespace Orleans.Streams.Utils
 {
 	public static class ProviderExtensions
 	{

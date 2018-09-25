@@ -1,7 +1,7 @@
 ﻿using System;
 using Orleans.Streams.Utils.Tools;
 
-namespace Orleans.Streams.Utils.Streams
+namespace Orleans.Streams.Utils
 {
 	/// <summary>
 	/// SQS utility functions
