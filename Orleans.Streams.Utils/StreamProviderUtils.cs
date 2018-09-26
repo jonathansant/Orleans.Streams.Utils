@@ -4,7 +4,7 @@ using Orleans.Streams.Utils.Tools;
 namespace Orleans.Streams.Utils
 {
 	/// <summary>
-	/// SQS utility functions
+	/// Streaming utility functions
 	/// </summary>
 	public class StreamProviderUtils
 	{
