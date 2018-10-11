@@ -6,7 +6,7 @@ namespace Orleans.Streams.Utils
 	/// <summary>
 	/// Streaming utility functions
 	/// </summary>
-	public class StreamProviderUtils
+	public static class StreamProviderUtils
 	{
 		private static readonly Guid OrleansNamespace = Guid.Parse("5bca7b08-9b10-41dc-aff1-b61499fae79e");
 
