@@ -59,7 +59,7 @@ namespace Orleans.Streams.Utils
 							var uniformHashCode = (uint) 0;
 
 							if (ringSize == 1)
-								return new InternalQueueId(props.Namespace, props.Hash, uniformHashCode);
+								return new InternalQueueId(props.QueueName, props.Hash, uniformHashCode);
 
 							var portion = checked((uint) (RangeFactory.RING_SIZE / ringSize + 1));
 							uniformHashCode = checked(portion * (uint) iteration);

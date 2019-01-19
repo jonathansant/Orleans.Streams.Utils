@@ -11,7 +11,7 @@
 		{
 			Namespace = @namespace;
 			PartitionId = partitionId;
-			QueueName = $"{@namespace}_{partitionId}";
+			QueueName = $"{@namespace}_{partitionId.ToString()}";
 			Hash = JenkinsHash.ComputeHash(@namespace);
 		}
 	}
