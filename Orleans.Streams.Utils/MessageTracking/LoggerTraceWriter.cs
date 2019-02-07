@@ -1,6 +1,6 @@
+using Microsoft.Extensions.Logging;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.Extensions.Logging;
 
 namespace Orleans.Streams.Utils.MessageTracking
 {
@@ -15,10 +15,12 @@ namespace Orleans.Streams.Utils.MessageTracking
 
 		public Task Write(IBatchContainer batchContainer)
 		{
+			var messageIndex = 0;
+
 			var events = batchContainer
-				.GetEvents<object>()
-				.ToDictionary(@event => @event.Item2.ToString(), @event => @event.Item1);
-			
+				.GetEvents<string>()
+				.ToDictionary(@event => $"event{messageIndex++}", @event => @event.Item1);
+
 			using (_logger.BeginScope(events))
 			{
 				_logger.LogInformation("Received message: Batch container created {@messageBatch}", batchContainer);
