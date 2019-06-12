@@ -35,10 +35,12 @@ namespace Orleans.Streams.Utils
 		}
 
 		public IEnumerable<QueueId> GetQueuesForRange(IRingRange range)
-			=> from ring in _queueMap.Values
-			   from queueId in ring.GetAllRingMembers()
-			   where range.InRange(queueId.GetUniformHashCode())
-			   select QueueId.GetQueueId(queueId.QueueNamePrefix, queueId.QueueId, queueId.UniformHashCache);
+		{
+			return from ring in _queueMap.Values
+				from queueId in ring.GetAllRingMembers()
+				where range.InRange(queueId.GetUniformHashCode())
+				select QueueId.GetQueueId(queueId.QueueNamePrefix, queueId.QueueId, queueId.UniformHashCache);
+		}
 
 		private static IDictionary<string, HashRing<InternalQueueId>> CreateQueueMap(
 			IEnumerable<QueueProperties> queueProps)
@@ -85,10 +87,7 @@ namespace Orleans.Streams.Utils
 				UniformHashCache = hash;
 			}
 
-			public uint GetUniformHashCode()
-			{
-				return UniformHashCache;
-			}
+			public uint GetUniformHashCode() => UniformHashCache;
 
 			public bool Equals(InternalQueueId other)
 			{
