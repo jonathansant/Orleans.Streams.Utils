@@ -36,7 +36,8 @@ namespace Orleans.Streams.Utils
 
 		public IEnumerable<QueueId> GetQueuesForRange(IRingRange range)
 		{
-			return from ring in _queueMap.Values
+			return
+				from ring in _queueMap.Values
 				from queueId in ring.GetAllRingMembers()
 				where range.InRange(queueId.GetUniformHashCode())
 				select QueueId.GetQueueId(queueId.QueueNamePrefix, queueId.QueueId, queueId.UniformHashCache);
