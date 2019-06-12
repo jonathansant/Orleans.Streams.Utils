@@ -1,5 +1,5 @@
-﻿using System;
-using Orleans.Streams.Utils.Tools;
+﻿using Orleans.Streams.Utils.Tools;
+using System;
 
 namespace Orleans.Streams.Utils
 {
