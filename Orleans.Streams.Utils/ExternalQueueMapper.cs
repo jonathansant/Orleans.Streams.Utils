@@ -18,10 +18,12 @@ namespace Orleans.Streams.Utils
 		}
 
 		public IEnumerable<QueueId> GetAllQueues()
-			=> _queueMap.Values
+		{
+			return _queueMap.Values
 				.SelectMany(queueMap => queueMap.GetAllRingMembers())
 				.Select(identifiers =>
 					QueueId.GetQueueId(identifiers.QueueNamePrefix, identifiers.QueueId, identifiers.UniformHashCache));
+		}
 
 		public QueueId GetQueueForStream(Guid streamGuid, string streamNamespace)
 		{
@@ -34,9 +36,9 @@ namespace Orleans.Streams.Utils
 
 		public IEnumerable<QueueId> GetQueuesForRange(IRingRange range)
 			=> from ring in _queueMap.Values
-			from queueId in ring.GetAllRingMembers()
-			where range.InRange(queueId.GetUniformHashCode())
-			select QueueId.GetQueueId(queueId.QueueNamePrefix, queueId.QueueId, queueId.UniformHashCache);
+			   from queueId in ring.GetAllRingMembers()
+			   where range.InRange(queueId.GetUniformHashCode())
+			   select QueueId.GetQueueId(queueId.QueueNamePrefix, queueId.QueueId, queueId.UniformHashCache);
 
 		private static IDictionary<string, HashRing<InternalQueueId>> CreateQueueMap(
 			IEnumerable<QueueProperties> queueProps)
@@ -84,20 +86,26 @@ namespace Orleans.Streams.Utils
 			}
 
 			public uint GetUniformHashCode()
-				=> UniformHashCache;
+			{
+				return UniformHashCache;
+			}
 
 			public bool Equals(InternalQueueId other)
-				=> other != null
-				&& QueueId == other.QueueId
-				&& string.Equals(QueueNamePrefix, other.QueueNamePrefix, StringComparison.Ordinal)
-				&& UniformHashCache == other.UniformHashCache;
+			{
+				return other != null
+					&& QueueId == other.QueueId
+					&& string.Equals(QueueNamePrefix, other.QueueNamePrefix, StringComparison.Ordinal)
+					&& UniformHashCache == other.UniformHashCache;
+			}
 
 			public override bool Equals(object obj) => Equals(obj as InternalQueueId);
 
 			public override int GetHashCode()
-				=> (int)QueueId
-				   ^ (QueueNamePrefix != null ? QueueNamePrefix.GetHashCode() : 0)
-				   ^ (int)UniformHashCache;
+			{
+				return (int)QueueId
+					   ^ (QueueNamePrefix != null ? QueueNamePrefix.GetHashCode() : 0)
+					   ^ (int)UniformHashCache;
+			}
 		}
 	}
 }
