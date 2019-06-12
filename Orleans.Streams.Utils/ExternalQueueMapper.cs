@@ -103,8 +103,8 @@ namespace Orleans.Streams.Utils
 			public override int GetHashCode()
 			{
 				return (int)QueueId
-					   ^ (QueueNamePrefix != null ? QueueNamePrefix.GetHashCode() : 0)
-					   ^ (int)UniformHashCache;
+					^ (QueueNamePrefix != null ? QueueNamePrefix.GetHashCode() : 0)
+					^ (int)UniformHashCache;
 			}
 		}
 	}
