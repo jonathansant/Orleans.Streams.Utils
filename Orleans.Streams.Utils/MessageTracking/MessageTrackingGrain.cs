@@ -1,5 +1,5 @@
-using System.Threading.Tasks;
 using Orleans.Concurrency;
+using System.Threading.Tasks;
 
 namespace Orleans.Streams.Utils.MessageTracking
 {
