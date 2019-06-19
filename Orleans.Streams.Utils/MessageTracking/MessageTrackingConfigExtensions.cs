@@ -6,8 +6,6 @@ namespace Orleans.Streams.Utils.MessageTracking
 	public static class MessageTrackingConfigExtensions
 	{
 		public static ISiloHostBuilder UseLoggingTracker(this ISiloHostBuilder siloHostBuilder)
-			=> siloHostBuilder
-				.EnableDirectClient()
-				.ConfigureServices(services => services.AddSingleton<ITraceWriter, LoggerTraceWriter>());
+			=> siloHostBuilder.ConfigureServices(services => services.AddSingleton<ITraceWriter, LoggerTraceWriter>());
 	}
 }

@@ -1,10 +1,10 @@
-﻿using System;
+﻿using Orleans.Concurrency;
+using Orleans.Runtime;
+using Orleans.Streams.Utils.Tools;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using Orleans.Concurrency;
-using Orleans.Runtime;
-using Orleans.Streams.Utils.Tools;
 
 namespace Orleans.Streams.Utils
 {
@@ -56,13 +56,13 @@ namespace Orleans.Streams.Utils
 
 						return new HashRing<InternalQueueId>(grouping.Select((props, iteration) =>
 						{
-							var uniformHashCode = (uint) 0;
+							var uniformHashCode = (uint)0;
 
 							if (ringSize == 1)
 								return new InternalQueueId(props.QueueName, props.Hash, uniformHashCode);
 
-							var portion = checked((uint) (RangeFactory.RING_SIZE / ringSize + 1));
-							uniformHashCode = checked(portion * (uint) iteration);
+							var portion = checked((uint)(RangeFactory.RING_SIZE / ringSize + 1));
+							uniformHashCode = checked(portion * (uint)iteration);
 							return new InternalQueueId(props.QueueName, props.Hash, uniformHashCode);
 						}));
 					});
@@ -96,17 +96,17 @@ namespace Orleans.Streams.Utils
 			public bool Equals(InternalQueueId other)
 			{
 				return other != null
-				       && QueueId == other.QueueId
-				       && string.Equals(QueueNamePrefix, other.QueueNamePrefix, StringComparison.Ordinal)
-				       && UniformHashCache == other.UniformHashCache;
+					   && QueueId == other.QueueId
+					   && string.Equals(QueueNamePrefix, other.QueueNamePrefix, StringComparison.Ordinal)
+					   && UniformHashCache == other.UniformHashCache;
 			}
 
 			public override bool Equals(object obj) => Equals(obj as InternalQueueId);
 
-			public override int GetHashCode() 
-				=> (int) QueueId 
-				   ^ (QueueNamePrefix != null ? QueueNamePrefix.GetHashCode() : 0) 
-				   ^ (int) UniformHashCache;
+			public override int GetHashCode()
+				=> (int)QueueId
+				   ^ (QueueNamePrefix != null ? QueueNamePrefix.GetHashCode() : 0)
+				   ^ (int)UniformHashCache;
 		}
 	}
 }
