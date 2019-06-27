@@ -18,12 +18,10 @@ namespace Orleans.Streams.Utils
 		}
 
 		public IEnumerable<QueueId> GetAllQueues()
-		{
-			return _queueMap.Values
+			=> _queueMap.Values
 				.SelectMany(queueMap => queueMap.GetAllRingMembers())
 				.Select(identifiers =>
 					QueueId.GetQueueId(identifiers.QueueNamePrefix, identifiers.QueueId, identifiers.UniformHashCache));
-		}
 
 		public QueueId GetQueueForStream(Guid streamGuid, string streamNamespace)
 		{
@@ -35,18 +33,14 @@ namespace Orleans.Streams.Utils
 		}
 
 		public IEnumerable<QueueId> GetQueuesForRange(IRingRange range)
-		{
-			return
-				from ring in _queueMap.Values
-				from queueId in ring.GetAllRingMembers()
-				where range.InRange(queueId.GetUniformHashCode())
-				select QueueId.GetQueueId(queueId.QueueNamePrefix, queueId.QueueId, queueId.UniformHashCache);
-		}
+			=> from ring in _queueMap.Values
+			   from queueId in ring.GetAllRingMembers()
+			   where range.InRange(queueId.GetUniformHashCode())
+			   select QueueId.GetQueueId(queueId.QueueNamePrefix, queueId.QueueId, queueId.UniformHashCache);
 
 		private static IDictionary<string, HashRing<InternalQueueId>> CreateQueueMap(
-			IEnumerable<QueueProperties> queueProps)
-		{
-			return queueProps
+			IEnumerable<QueueProperties> queueProps
+		) => queueProps
 				.GroupBy(props => props.Namespace)
 				.ToDictionary(
 					grouping => grouping.Key,
@@ -66,7 +60,6 @@ namespace Orleans.Streams.Utils
 							return new InternalQueueId(props.QueueName, props.Hash, uniformHashCode);
 						}));
 					});
-		}
 
 		/// <summary>
 		/// Identifier of a durable queue. This is a Hack which can be avoided if we work in the Orleans workspace.
@@ -89,17 +82,13 @@ namespace Orleans.Streams.Utils
 			}
 
 			public uint GetUniformHashCode()
-			{
-				return UniformHashCache;
-			}
+				=> UniformHashCache;
 
 			public bool Equals(InternalQueueId other)
-			{
-				return other != null
-					   && QueueId == other.QueueId
-					   && string.Equals(QueueNamePrefix, other.QueueNamePrefix, StringComparison.Ordinal)
-					   && UniformHashCache == other.UniformHashCache;
-			}
+				=> other != null
+				&& QueueId == other.QueueId
+				&& string.Equals(QueueNamePrefix, other.QueueNamePrefix, StringComparison.Ordinal)
+				&& UniformHashCache == other.UniformHashCache;
 
 			public override bool Equals(object obj) => Equals(obj as InternalQueueId);
 
