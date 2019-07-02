@@ -3,8 +3,10 @@
 namespace Orleans.Streams.Utils.Serialization
 {
 	public interface IExternalStreamDeserializer : IDisposable
+	{ }
+
+	public interface IExternalStreamDeserializer<out T> : IExternalStreamDeserializer
 	{
-		T Deserialize<T>(object obj);
-		object Deserialize(Type type, object obj);
+		T Deserialize(byte[] data);
 	}
 }

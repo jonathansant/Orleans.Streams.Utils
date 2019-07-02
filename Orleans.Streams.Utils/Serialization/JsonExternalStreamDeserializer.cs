@@ -1,15 +1,24 @@
 ﻿using Newtonsoft.Json;
-using System;
+using System.IO;
+using System.Text;
 
 namespace Orleans.Streams.Utils.Serialization
 {
-	public class JsonExternalStreamDeserializer : IExternalStreamDeserializer
+	public class JsonExternalStreamDeserializer<T> : IExternalStreamDeserializer<T>
 	{
-		public T Deserialize<T>(object obj)
-			=> JsonConvert.DeserializeObject<T>((string)obj);
+		private readonly JsonSerializer _serializer;
 
-		public object Deserialize(Type type, object obj)
-			=> JsonConvert.DeserializeObject((string)obj, type);
+		public JsonExternalStreamDeserializer()
+		{
+			_serializer = JsonSerializer.Create();
+		}
+
+		public T Deserialize(byte[] data)
+		{
+			using (var stream = new MemoryStream(data))
+			using (var reader = new StreamReader(stream, Encoding.UTF8))
+				return (T)_serializer.Deserialize(reader, typeof(T));
+		}
 
 		public void Dispose() { }
 	};
