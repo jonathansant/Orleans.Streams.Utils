@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Orleans.Streams.Utils
+﻿namespace Orleans.Streams.Utils
 {
 	public class QueueProperties
 	{
@@ -8,7 +6,7 @@ namespace Orleans.Streams.Utils
 		public string Namespace { get; }
 		public uint PartitionId { get; }
 		public uint Hash { get; }
-		public bool IsExternal { get; set; }
+		public bool IsExternal { get; }
 
 		public QueueProperties(
 			string @namespace,
