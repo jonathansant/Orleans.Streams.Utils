@@ -1,5 +1,4 @@
-﻿using Orleans.Streams.Utils.Serialization;
-using System;
+﻿using System;
 
 namespace Orleans.Streams.Utils
 {
@@ -10,22 +9,13 @@ namespace Orleans.Streams.Utils
 		public uint PartitionId { get; }
 		public uint Hash { get; }
 		public bool IsExternal { get; set; }
-		public IExternalStreamDeserializer ExternalStreamDeserializer { get; }
 
 		public QueueProperties(
 			string @namespace,
 			uint partitionId = 0,
-			bool isExternal = false,
-			IExternalStreamDeserializer externalStreamDeserializer = null
+			bool isExternal = false
 		)
 		{
-			if (isExternal && externalStreamDeserializer == null)
-				throw new ArgumentNullException(
-					nameof(externalStreamDeserializer),
-					"External topics should specify an external deserializer"
-				);
-
-			ExternalStreamDeserializer = externalStreamDeserializer;
 			Namespace = @namespace;
 			PartitionId = partitionId;
 			QueueName = $"{@namespace}_{partitionId.ToString()}";

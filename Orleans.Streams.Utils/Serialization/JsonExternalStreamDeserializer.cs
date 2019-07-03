@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Orleans.Streams.Utils.Serialization
 {
-	public class JsonExternalStreamDeserializer<T> : IExternalStreamDeserializer<T>
+	public class JsonExternalStreamDeserializer : IExternalStreamDeserializer
 	{
 		private readonly JsonSerializer _serializer;
 
@@ -13,7 +13,7 @@ namespace Orleans.Streams.Utils.Serialization
 			_serializer = JsonSerializer.Create();
 		}
 
-		public T Deserialize(byte[] data)
+		public T Deserialize<T>(QueueProperties queueProps, byte[] data)
 		{
 			using (var stream = new MemoryStream(data))
 			using (var reader = new StreamReader(stream, Encoding.UTF8))
