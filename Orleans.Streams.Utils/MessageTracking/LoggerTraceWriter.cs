@@ -19,7 +19,7 @@ namespace Orleans.Streams.Utils.MessageTracking
 
 			var events = batchContainer
 				.GetEvents<byte[]>()
-				.ToDictionary(@event => $"event{messageIndex++}", @event => @event.Item1);
+				.ToDictionary(@event => $"event{messageIndex++}");
 
 			using (_logger.BeginScope(events))
 			{
