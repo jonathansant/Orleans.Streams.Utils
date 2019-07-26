@@ -1,4 +1,5 @@
 using Orleans.Concurrency;
+using Orleans.Placement;
 using System.Threading.Tasks;
 
 namespace Orleans.Streams.Utils.MessageTracking
@@ -6,10 +7,10 @@ namespace Orleans.Streams.Utils.MessageTracking
 	public interface IMessageTrackingGrain : IGrainWithStringKey
 	{
 		[OneWay]
-		Task Track(Immutable<IBatchContainer> batchContainer);
+		Task Track(Immutable<TrackingUnit> batchContainer);
 	}
 
-	[StatelessWorker(1)]
+	[PreferLocalPlacement]
 	public class MessageTrackingGrain : Grain, IMessageTrackingGrain
 	{
 		private readonly ITraceWriter _traceWriter;
@@ -19,7 +20,7 @@ namespace Orleans.Streams.Utils.MessageTracking
 			_traceWriter = traceWriter;
 		}
 
-		public Task Track(Immutable<IBatchContainer> batchContainer)
-			=> _traceWriter.Write(batchContainer.Value);
+		public Task Track(Immutable<TrackingUnit> trackingUnit)
+			=> _traceWriter.Write(trackingUnit.Value);
 	}
 }
