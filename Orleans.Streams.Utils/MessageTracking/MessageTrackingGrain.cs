@@ -1,5 +1,8 @@
 using Orleans.Concurrency;
 using Orleans.Placement;
+using Orleans.Runtime;
+using System;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Orleans.Streams.Utils.MessageTracking
@@ -13,11 +16,23 @@ namespace Orleans.Streams.Utils.MessageTracking
 	[PreferLocalPlacement]
 	public class MessageTrackingGrain : Grain, IMessageTrackingGrain
 	{
-		private readonly ITraceWriter _traceWriter;
+		private readonly IServiceProvider _serviceProvider;
+		private ITraceWriter _traceWriter;
 
-		public MessageTrackingGrain(ITraceWriter traceWriter)
+		public MessageTrackingGrain(IServiceProvider serviceProvider)
 		{
-			_traceWriter = traceWriter;
+			_serviceProvider = serviceProvider;
+		}
+
+		public override Task OnActivateAsync()
+		{
+			var keyParts = this.GetPrimaryKeyString().Split(
+				new[] { "::" },
+				StringSplitOptions.RemoveEmptyEntries
+			);
+
+			_traceWriter = _serviceProvider.GetRequiredServiceByName<ITraceWriter>(keyParts.First());
+			return Task.CompletedTask;
 		}
 
 		public Task Track(Immutable<TrackingUnit> trackingUnit)
