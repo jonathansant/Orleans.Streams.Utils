@@ -60,6 +60,8 @@ workflows:
     jobs:
       - build
       - publish:
+          requires:
+            - build
           filters:
             branches:
               only:
