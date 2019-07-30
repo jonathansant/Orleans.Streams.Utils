@@ -1,6 +1,6 @@
 version: 2
 jobs:
-  - build:
+  build:
     working_directory: /app
     docker:
       - image: jonathansant/dotnetcore-ci:2.1.0
@@ -29,7 +29,7 @@ jobs:
       - run:
           name: test
           command: npm test
-  - publish:
+  publish:
     working_directory: /app
     docker:
       - image: jonathansant/dotnetcore-ci:2.1.0
@@ -55,8 +55,8 @@ workflows:
     jobs:
       - build
       - publish:
-        filters:
-          branches:
-            only:
-              - master
-              - dev-build
+          filters:
+            branches:
+              only:
+                - master
+                - dev-build
