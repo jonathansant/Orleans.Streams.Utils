@@ -43,6 +43,10 @@ jobs:
             SOLUTION=$(node -p "require('./package.json').solution")
             PACKAGE_VERSION=$(node -p "require('./package.json').version")
 
+            if [ $CIRCLE_BRANCH  == "develop" ]; then
+              $PACKAGE_VERSION=$PACKAGE_VERSION-dev-$CIRCLE_BUILD_NUM
+            fi
+
             dotnet pack $SOLUTION /p:PackageVersion=$PACKAGE_VERSION -o ../../ -c release
             dotnet nuget push ../../*.nupkg -k $nuget_api_key -s "nuget.org"
 
@@ -59,4 +63,4 @@ workflows:
             branches:
               only:
                 - master
-                - dev-build
+                - develop
