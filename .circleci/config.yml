@@ -37,13 +37,14 @@ jobs:
       DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1
       DOTNET_CLI_TELEMETRY_OPTOUT: 1
     steps:
+      - checkout
       - deploy:
           name: Publish NuGet
           command: |
             SOLUTION=$(node -p "require('./package.json').solution")
             PACKAGE_VERSION=$(node -p "require('./package.json').version")
 
-            if [ $CIRCLE_BRANCH  == "develop" ]; then
+            if [ $CIRCLE_BRANCH == "develop" ]; then
               $PACKAGE_VERSION=$PACKAGE_VERSION-dev-$CIRCLE_BUILD_NUM
             fi
 
