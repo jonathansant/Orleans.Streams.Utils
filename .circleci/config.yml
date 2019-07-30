@@ -45,7 +45,7 @@ jobs:
             PACKAGE_VERSION=$(node -p "require('./package.json').version")
 
             if [ $CIRCLE_BRANCH == "develop" ]; then
-              $PACKAGE_VERSION=$PACKAGE_VERSION-dev-$CIRCLE_BUILD_NUM
+              PACKAGE_VERSION=$PACKAGE_VERSION-dev-$CIRCLE_BUILD_NUM
             fi
 
             dotnet pack $SOLUTION /p:PackageVersion=$PACKAGE_VERSION -o ../../ -c release
