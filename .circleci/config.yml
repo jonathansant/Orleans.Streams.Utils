@@ -22,21 +22,24 @@ jobs:
             SOLUTION=$(node -p "require('./package.json').solution")
 
             echo "restore packages"
-            dotnet restore $SOLUTIONN /p:Configuration=Release
+            dotnet restore $SOLUTION /p:Configuration=Release
 
             echo "dotnet publish"
             dotnet publish $SOLUTION -c Release
       - run:
           name: test
           command: npm test
+  publish:
+    working_directory: /app
+    docker:
+      - image: jonathansant/dotnetcore-ci:2.1.0
+    environment:
+      DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1
+      DOTNET_CLI_TELEMETRY_OPTOUT: 1
+    steps:
       - deploy:
           name: Publish NuGet
           command: |
-            if [ "$CIRCLE_BRANCH" != "master" ]; then
-              echo -e "\e[33m Branch does not publish -- exit!"
-              exit
-            fi
-
             SOLUTION=$(node -p "require('./package.json').solution")
             PACKAGE_VERSION=$(node -p "require('./package.json').version")
 
@@ -46,3 +49,14 @@ jobs:
             echo "git tag"
             git tag $PACKAGE_VERSION
             git push --tags
+workflows:
+  version: 2
+  build_and_publish:
+    jobs:
+      - build
+      - publish:
+        filters:
+          branches:
+            only:
+              - master
+              - dev-build

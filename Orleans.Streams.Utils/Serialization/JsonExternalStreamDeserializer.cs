@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using System;
 using System.IO;
 using System.Text;
 
@@ -13,11 +14,11 @@ namespace Orleans.Streams.Utils.Serialization
 			_serializer = JsonSerializer.Create();
 		}
 
-		public T Deserialize<T>(QueueProperties queueProps, byte[] data)
+		public object Deserialize(QueueProperties queueProps, Type type, byte[] data)
 		{
 			using (var stream = new MemoryStream(data))
 			using (var reader = new StreamReader(stream, Encoding.UTF8))
-				return (T)_serializer.Deserialize(reader, typeof(T));
+				return _serializer.Deserialize(reader, type);
 		}
 
 		public void Dispose() { }
