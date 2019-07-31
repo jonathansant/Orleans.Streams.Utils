@@ -4,6 +4,6 @@ namespace Orleans.Streams.Utils.MessageTracking
 {
 	public interface ITraceWriter
 	{
-		Task Write(TrackingUnit trackingUnit);
+		Task Write(IBatchContainer batchContainer);
 	}
 }
