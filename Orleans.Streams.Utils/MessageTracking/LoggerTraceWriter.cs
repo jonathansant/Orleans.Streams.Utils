@@ -13,15 +13,15 @@ namespace Orleans.Streams.Utils.MessageTracking
 			_logger = logger;
 		}
 
-		public Task Write(TrackingUnit trackingUnit)
+		public Task Write(IBatchContainer batchContainer)
 		{
-			var count = trackingUnit
-				.Events
+			var count = batchContainer
+				.GetEvents<object>()
 				.Count();
 
 			_logger.LogInformation(
 				"Received message: Batch container created {@trackingUnit} with {count} event(s)",
-				trackingUnit,
+				batchContainer,
 				count
 			);
 

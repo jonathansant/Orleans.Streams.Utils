@@ -10,7 +10,7 @@ namespace Orleans.Streams.Utils.MessageTracking
 	public interface IMessageTrackingGrain : IGrainWithStringKey
 	{
 		[OneWay]
-		Task Track(Immutable<TrackingUnit> batchContainer);
+		Task Track(Immutable<IBatchContainer> batchContainer);
 	}
 
 	[PreferLocalPlacement]
@@ -35,7 +35,7 @@ namespace Orleans.Streams.Utils.MessageTracking
 			return Task.CompletedTask;
 		}
 
-		public Task Track(Immutable<TrackingUnit> trackingUnit)
-			=> _traceWriter.Write(trackingUnit.Value);
+		public Task Track(Immutable<IBatchContainer> batchContainer)
+			=> _traceWriter.Write(batchContainer.Value);
 	}
 }

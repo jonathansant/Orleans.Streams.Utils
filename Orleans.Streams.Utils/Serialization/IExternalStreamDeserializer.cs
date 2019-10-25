@@ -4,6 +4,6 @@ namespace Orleans.Streams.Utils.Serialization
 {
 	public interface IExternalStreamDeserializer : IDisposable
 	{
-		T Deserialize<T>(QueueProperties queueProps, byte[] data);
+		object Deserialize(QueueProperties queueProps, Type type, byte[] data);
 	}
 }
