@@ -5,17 +5,12 @@
     <PackageTags>orleans utilities streams providers streamprovider</PackageTags>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.Orleans.Core" Version="2.3.2" />
-    <PackageReference Include="Microsoft.Orleans.Core.Abstractions" Version="2.3.2" />
-    <PackageReference Include="Microsoft.Orleans.OrleansCodeGenerator.Build" Version="2.3.2">
+    <PackageReference Include="Microsoft.Orleans.Core" Version="3.2.0" />
+    <PackageReference Include="Microsoft.Orleans.Core.Abstractions" Version="3.2.0" />
+    <PackageReference Include="Microsoft.Orleans.OrleansCodeGenerator.Build" Version="3.2.0">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.Orleans.OrleansRuntime" Version="2.3.2" />
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="Orleans.Runtime.Abstractions, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\..\..\..\.nuget\packages\microsoft.orleans.runtime.abstractions\2.2.0\lib\netstandard2.0\Orleans.Runtime.Abstractions.dll</HintPath>
-    </Reference>
+    <PackageReference Include="Microsoft.Orleans.OrleansRuntime" Version="3.2.0" />
   </ItemGroup>
 </Project>
