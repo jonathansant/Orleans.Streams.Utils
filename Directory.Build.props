@@ -26,5 +26,6 @@
 
   <!-- Shared Package Versions -->
   <PropertyGroup>
+     <OrleansVersion>3.5.1</OrleansVersion>
   </PropertyGroup>
 </Project>

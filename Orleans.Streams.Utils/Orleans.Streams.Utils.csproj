@@ -5,12 +5,12 @@
     <PackageTags>orleans utilities streams providers streamprovider</PackageTags>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.Orleans.Core" Version="3.2.0" />
-    <PackageReference Include="Microsoft.Orleans.Core.Abstractions" Version="3.2.0" />
-    <PackageReference Include="Microsoft.Orleans.OrleansCodeGenerator.Build" Version="3.2.0">
+    <PackageReference Include="Microsoft.Orleans.Core" Version="$(OrleansVersion)" />
+    <PackageReference Include="Microsoft.Orleans.Core.Abstractions" Version="$(OrleansVersion)" />
+    <PackageReference Include="Microsoft.Orleans.OrleansCodeGenerator.Build" Version="$(OrleansVersion)">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.Orleans.OrleansRuntime" Version="3.2.0" />
+    <PackageReference Include="Microsoft.Orleans.OrleansRuntime" Version="$(OrleansVersion)" />
   </ItemGroup>
 </Project>
