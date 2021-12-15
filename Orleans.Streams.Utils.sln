@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28010.2026
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31829.152
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Orleans.Streams.Utils", "Orleans.Streams.Utils\Orleans.Streams.Utils.csproj", "{02F19193-AD76-497B-B12E-0139BB0BD5DB}"
 EndProject
@@ -10,6 +10,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tools", "tools", "{55DBDFE0
 		.editorconfig = .editorconfig
 		.circleci\config.yml = .circleci\config.yml
 		Directory.Build.props = Directory.Build.props
+		NuGet.Config = NuGet.Config
 		package.json = package.json
 	EndProjectSection
 EndProject
