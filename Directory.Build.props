@@ -21,11 +21,11 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
   </PropertyGroup>
 
   <!-- Shared Package Versions -->
   <PropertyGroup>
-     <OrleansVersion>3.5.1</OrleansVersion>
+     <OrleansVersion>3.6.0</OrleansVersion>
   </PropertyGroup>
 </Project>
