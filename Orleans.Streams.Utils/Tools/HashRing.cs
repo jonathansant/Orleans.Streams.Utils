@@ -71,11 +71,12 @@ namespace Orleans.Streams.Utils.Tools
 			return CalculateResponsible(element.GetUniformHashCode());
 		}
 
-		public T CalculateResponsible(Guid guid)
+		public T CalculateResponsible(ReadOnlyMemory<byte> element)
 		{
-			var guidBytes = guid.ToByteArray();
-			var uniformHashCode = JenkinsHash.ComputeHash(guidBytes);
-			return CalculateResponsible(uniformHashCode);
+			var guidBytes = element.ToArray();
+			var hashCode = (uint)element.GetHashCode();
+			//var uniformHashCode = JenkinsHash.ComputeHash(guidBytes);
+			return CalculateResponsible(hashCode);
 		}
 
 		private T CalculateResponsible(uint uniformHashCode)

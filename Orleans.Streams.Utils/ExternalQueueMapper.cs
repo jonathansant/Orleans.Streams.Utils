@@ -23,12 +23,14 @@ namespace Orleans.Streams.Utils
 				.Select(identifiers =>
 					QueueId.GetQueueId(identifiers.QueueNamePrefix, identifiers.QueueId, identifiers.UniformHashCache));
 
-		public QueueId GetQueueForStream(Guid streamGuid, string streamNamespace)
+		public QueueId GetQueueForStream(StreamId streamId)
 		{
+			var streamNamespace = streamId.GetNamespace();
 			if (!_queueMap.ContainsKey(streamNamespace))
 				throw new ArgumentException("No queue for supplied namespace");
 
-			var identifier = _queueMap[streamNamespace].CalculateResponsible(streamGuid); // todo: Error handling
+			
+			var identifier = _queueMap[streamNamespace].CalculateResponsible(streamId.Key); // todo: Error handling
 			return QueueId.GetQueueId(identifier.QueueNamePrefix, identifier.QueueId, identifier.UniformHashCache);
 		}
 
