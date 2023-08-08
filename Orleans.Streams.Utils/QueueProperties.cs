@@ -21,7 +21,7 @@ namespace Orleans.Streams.Utils
 			Namespace = @namespace;
 			PartitionId = partitionId;
 			QueueName = $"{@namespace}_{partitionId.ToString()}";
-			Hash = JenkinsHash.ComputeHash(@namespace);
+			Hash = 0;// JenkinsHash.ComputeHash(@namespace); todo: matti
 			IsExternal = isExternal;
 			ExternalContractType = externalContractType;
 		}

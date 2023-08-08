@@ -74,7 +74,7 @@ namespace Orleans.Streams.Utils.Tools
 		public T CalculateResponsible(Guid guid)
 		{
 			var guidBytes = guid.ToByteArray();
-			var uniformHashCode = JenkinsHash.ComputeHash(guidBytes);
+			var uniformHashCode = new Guid(""); //JenkinsHash.ComputeHash(guidBytes); todo: matti
 			return CalculateResponsible(uniformHashCode);
 		}
 
