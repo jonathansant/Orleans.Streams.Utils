@@ -3,6 +3,7 @@ using Orleans.Placement;
 using Orleans.Runtime;
 using System;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Orleans.Streams.Utils.MessageTracking
@@ -24,7 +25,7 @@ namespace Orleans.Streams.Utils.MessageTracking
 			_serviceProvider = serviceProvider;
 		}
 
-		public override Task OnActivateAsync()
+		public override Task OnActivateAsync(CancellationToken cancellationToken) 
 		{
 			var keyParts = this.GetPrimaryKeyString().Split(
 				new[] { "::" },
@@ -34,6 +35,7 @@ namespace Orleans.Streams.Utils.MessageTracking
 			_traceWriter = _serviceProvider.GetRequiredServiceByName<ITraceWriter>(keyParts.First());
 			return Task.CompletedTask;
 		}
+
 
 		public Task Track(Immutable<IBatchContainer> batchContainer)
 			=> _traceWriter.Write(batchContainer.Value);
