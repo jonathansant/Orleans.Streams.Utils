@@ -2,6 +2,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.IO.Hashing;
 using System.Linq;
 using System.Text;
 
@@ -74,8 +75,8 @@ namespace Orleans.Streams.Utils.Tools
 		public T CalculateResponsible(Guid guid)
 		{
 			var guidBytes = guid.ToByteArray();
-			var uniformHashCode = JenkinsHash.ComputeHash(guidBytes);
-			return CalculateResponsible(uniformHashCode);
+			var uniformHashCode = XxHash64.Hash(guidBytes); 
+			return CalculateResponsible(Convert.ToUInt32(uniformHashCode));
 		}
 
 		private T CalculateResponsible(uint uniformHashCode)

@@ -1,5 +1,4 @@
-﻿using Orleans.Concurrency;
-using Orleans.Runtime;
+﻿using Orleans.Runtime;
 using Orleans.Streams.Utils.Tools;
 using System;
 using System.Collections.Generic;
@@ -23,8 +22,11 @@ namespace Orleans.Streams.Utils
 				.Select(identifiers =>
 					QueueId.GetQueueId(identifiers.QueueNamePrefix, identifiers.QueueId, identifiers.UniformHashCache));
 
-		public QueueId GetQueueForStream(Guid streamGuid, string streamNamespace)
+		public QueueId GetQueueForStream(StreamId streamId)
 		{
+			var streamNamespace = streamId.Namespace.ToString();
+			var streamGuid = new Guid(streamId.Key.ToString());
+			
 			if (!_queueMap.ContainsKey(streamNamespace))
 				throw new ArgumentException("No queue for supplied namespace");
 

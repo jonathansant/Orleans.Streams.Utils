@@ -1,4 +1,6 @@
 ﻿using System;
+using System.IO.Hashing;
+using System.Text;
 
 namespace Orleans.Streams.Utils
 {
@@ -21,7 +23,7 @@ namespace Orleans.Streams.Utils
 			Namespace = @namespace;
 			PartitionId = partitionId;
 			QueueName = $"{@namespace}_{partitionId.ToString()}";
-			Hash = JenkinsHash.ComputeHash(@namespace);
+			Hash = Convert.ToUInt32(XxHash64.Hash(Encoding.UTF8.GetBytes(@namespace)));
 			IsExternal = isExternal;
 			ExternalContractType = externalContractType;
 		}
