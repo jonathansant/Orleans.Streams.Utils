@@ -19,7 +19,7 @@ on:
 jobs:
   package:
     name: Package
-    uses: jonathansant/.github/workflows/dotnet-ci.yml@master
+    uses: jonathansant/.github/.github/workflows/dotnet-ci.yml@master
     with:
       dotnet-version: 7.0.x
       publishable: ${{ contains(fromJSON('["develop", "master", "workflow", "feature/workflow"]'), github.ref_name) || endsWith(github.ref_name, '.x')  }}
