@@ -8,10 +8,10 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tools", "tools", "{55DBDFE0-6B9A-4A29-B9CC-EF341E667569}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
-		.circleci\config.yml = .circleci\config.yml
 		Directory.Build.props = Directory.Build.props
 		NuGet.Config = NuGet.Config
 		package.json = package.json
+		.github\workflows\build-publish.yml = .github\workflows\build-publish.yml
 	EndProjectSection
 EndProject
 Global
