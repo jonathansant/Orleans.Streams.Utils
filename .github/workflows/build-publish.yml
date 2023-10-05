@@ -5,7 +5,7 @@ on:
     branches:
       - master
       - '*.x'
-      # - feature/*
+      - feature/*
     paths-ignore:
       - '**.md'
 
