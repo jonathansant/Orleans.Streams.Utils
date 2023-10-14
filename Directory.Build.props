@@ -23,9 +23,4 @@
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
   </PropertyGroup>
-
-  <!-- Shared Package Versions -->
-  <PropertyGroup>
-     <OrleansVersion>7.2.1</OrleansVersion>
-  </PropertyGroup>
 </Project>
