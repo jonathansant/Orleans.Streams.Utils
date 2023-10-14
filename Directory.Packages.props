@@ -1,0 +1,9 @@
+<Project>
+  <PropertyGroup>
+    <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageVersion Include="Microsoft.Orleans.Server" Version="7.2.1" />
+    <PackageVersion Include="Microsoft.Orleans.Streaming" Version="7.2.1" />
+  </ItemGroup>
+</Project>
