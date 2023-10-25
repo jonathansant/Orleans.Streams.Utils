@@ -1,6 +1,6 @@
 {
   "name": "orleans.streams.utils",
-  "version": "13.0.0",
+  "version": "13.1.0",
   "description": "Orleans stream utilities",
   "solution": "Orleans.Streams.Utils.sln",
   "dependencies": {},
