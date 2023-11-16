@@ -76,7 +76,7 @@ namespace Orleans.Streams.Utils.Tools
 		{
 			var guidBytes = guid.ToByteArray();
 			var uniformHashCode = XxHash64.Hash(guidBytes); 
-			return CalculateResponsible(Convert.ToUInt32(uniformHashCode));
+			return CalculateResponsible(BitConverter.ToUInt32(uniformHashCode));
 		}
 
 		private T CalculateResponsible(uint uniformHashCode)
