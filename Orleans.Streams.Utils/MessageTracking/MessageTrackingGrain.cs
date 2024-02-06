@@ -1,6 +1,6 @@
+using Microsoft.Extensions.DependencyInjection;
 using Orleans.Concurrency;
 using Orleans.Placement;
-using Orleans.Runtime;
 using System;
 using System.Linq;
 using System.Threading;
@@ -32,7 +32,7 @@ namespace Orleans.Streams.Utils.MessageTracking
 				StringSplitOptions.RemoveEmptyEntries
 			);
 
-			_traceWriter = _serviceProvider.GetRequiredServiceByName<ITraceWriter>(keyParts.First());
+			_traceWriter = _serviceProvider.GetRequiredKeyedService<ITraceWriter>(keyParts.First());
 			return Task.CompletedTask;
 		}
 
