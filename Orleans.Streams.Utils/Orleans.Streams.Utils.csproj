@@ -7,5 +7,6 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.Orleans.Streaming" Version="$(OrleansVersion)"/>
     <PackageReference Include="Microsoft.Orleans.Server" Version="$(OrleansVersion)"/>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
   </ItemGroup>
 </Project>
